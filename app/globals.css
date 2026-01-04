@@ -24,3 +24,49 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =========================================
+   🖨️ إعدادات الطباعة (Print Styles)
+   ========================================= */
+@media print {
+  /* 1. إخفاء كل محتوى الصفحة افتراضياً */
+  body * {
+    visibility: hidden;
+  }
+
+  /* 2. إظهار فقط الكارت المخصص للطباعة ومحتوياته */
+  .printable-card, .printable-card * {
+    visibility: visible;
+  }
+
+  /* 3. ضبط تموضع الكارت ليملأ ورقة A4 */
+  .printable-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background-color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    z-index: 9999; /* لضمان ظهوره فوق كل شيء */
+  }
+
+  /* 4. إجبار المتصفح على طباعة الألوان والخلفيات (مهم جداً للبادجات والهيدر) */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 5. كلاس لإخفاء الأزرار والفوتر أثناء الطباعة */
+  .no-print {
+    display: none !important;
+  }
+  
+  /* إخفاء السكرول بار */
+  html, body {
+    height: auto;
+    overflow: visible;
+  }
+}
